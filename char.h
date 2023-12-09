@@ -24,6 +24,7 @@ class Dot
 		void handleEvent( SDL_Event& e );
 		//Moves the dot
 		void move();
+		
 		//Shows the dot on the screen
 		void render();
 		
@@ -35,7 +36,8 @@ class Dot
 		
 		void GetHP();//read HP (and display on window)
 		void GetEnergy(); 
-		
+		void GetmPosX();
+		void GetmPosY();
 		void SetHP();//using when attacked by monsters or get ¸É¥] 
 		void TakeDamage();//reduce HP when touching bullet or touch monster 
 		

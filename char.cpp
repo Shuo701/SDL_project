@@ -2,7 +2,9 @@
 #include "weapon.h"
 
 //    Weapon p = Weapon(0,20,00);
+//    Weapon &SelfArmory[0] = p;---------------------------人拿武器或許可以這樣寫 ，用reference的原因是這樣可以減少創造多餘的物件 
 //    Weapon q = Weapon(0,10,00);
+//	  Weapon &SelfArmory[1] = q;
 
 Dot::Dot() 
 	 :HP(200), Energy(120)
@@ -16,8 +18,8 @@ Dot::Dot()
     mVelY = 0;
     
 
-    Weapon SelfArmory[0] = new//武器一 
-    Weapon SelfArmory[1] = //武器二 
+//    Weapon SelfArmory[0] = new//武器一 
+//    Weapon SelfArmory[1] = //武器二 
 }
 
 Dot::Dot() 
@@ -109,8 +111,14 @@ void Dot::render()
     //Show the dot
 	gDotTexture.render( mPosX, mPosY );
 }
-           
-		   
+ //--------------------------------------------------------------------------以上為SDL          
+
+void Dot::GetmPosX(){
+	return mPosX;
+}		
+void Dot::GetmPosY(){
+	return mPosY;
+}   
 		   
 		   
 		                                                                                                                                                                                                                                                                               
