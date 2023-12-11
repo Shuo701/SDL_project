@@ -1,10 +1,11 @@
 #include "Bullet.h"
 #include "weapon.h"
-Bullet::Bullet(){
+Bullet::Bullet(int mvelX,int mvelY, int damage){
 	mPosX = Weapon.Get_mPosX();
 	mPosY = Weapon.Get_mPosY();
-	mVelX = 5;
-	mVelY = 5;
+	mVelX = mvelX;
+	mVelY = mvelY;
+	Damage = damage;
 }
 
 void Bullet::move()
@@ -29,7 +30,6 @@ void Bullet::move()
         mPosY -= mVelY;
     }
 }
-
 void Bullet::render()
 {
     //Show the dot

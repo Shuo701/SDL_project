@@ -8,16 +8,13 @@ class Weapon{
 		Weapon(int mposX, int mposY)
 //		double FireFrequence();    main function                           //©T©w®É¶¡µo®g 
 //		void GetAttack();//display attack
-		void GetmPosX();
+		void GetmPosX();//gDotTexture.render³o­Ó¨ç¼Æ»Ý­n¦³ ªZ¾¹¦ì¸mªº°Ñ¼Æ 
 		void GetmPosY();
-		void SetPosX();
+		void SetPosX();//¨C­¸¤@¬q¶ZÂ÷³£»Ý­n§ó·s¤@¦¸¦ì¸m 
 		void SetPosY();
-		void ChangePositionWithCharacter(Dot& character); 
+		void ChangePositionWithCharacter(Engineer& character);//¨C¦¸¨ê·s¿Ã¹õ³£§âªZ¾¹¦ì¸m§ó§ï¨ì»P¤Hª«¬Û¦P 
 //		void get_Durability();//display Durability
 //		void set_Durability();
-
-
-	
 		void render();//¨C¦¸ªZ¾¹§ó§ï¦ì¸m«á³£­n­«·srender¤@¦¸ 
 };
 
@@ -34,9 +31,7 @@ class RangedWeapon : public Weapon{ // »·µ{ªZ¾¹ªº§@¥Î¥D­n¬O¥h³sµ²¦³µÛ¯S©w¶Ë®`ªº¤
 	private:
 		int ID;
 	public:
-		RangedWeapon(int id);
-		
-		
+		RangedWeapon(int id);		
 };
 
 //³oÃä¹w­p§âªZ¾¹¤À¦¨»·µ{¸òªñ¾Ô³B²z¡A 

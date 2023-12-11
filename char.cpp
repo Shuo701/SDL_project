@@ -6,12 +6,15 @@
 //    Weapon q = Weapon(0,10,00);
 //	  Weapon &SelfArmory[1] = q;
 
-Dot::Dot() 
-	 :HP(200), Energy(120)
+Engineer::Engineer(int hp, int max_hp , int energy, int max_energy)
 {
     //Initialize the offsets
-    mPosX = 0;
-    mPosY = 0;
+    HP = hp;
+    MaxHP = max_hp;
+    Energy = energy;
+    MaxEnergy = max_energy;
+    mPosX = (視窗寬度)/2 - ENGINEER_WIDTH/2;
+    mPosY = (視窗寬度)/2 - ENGINEER_HEIGHT/2;//使角色生成在螢幕中心 
 
     //Initialize the velocity
     mVelX = 0;
@@ -22,39 +25,12 @@ Dot::Dot()
 //    Weapon SelfArmory[1] = //武器二 
 }
 
-Dot::Dot() 
-	 :HP(150), Energy(150)
-{
-    //Initialize the offsets
-    mPosX = 0;
-    mPosY = 0;
-
-    //Initialize the velocity
-    mVelX = 0;
-    mVelY = 0;
-    Weapon SelfArmory[0] = //武器一 
-    Weapon SelfArmory[1] = //武器二
-}
-
-Dot::Dot() 
-	 :HP(100), Energy(200)
-{
-    //Initialize the offsets
-    mPosX = 0;
-    mPosY = 0;
-
-    //Initialize the velocity
-    mVelX = 0;
-    mVelY = 0;
-    Weapon SelfArmory[0] = //武器一 
-    Weapon SelfArmory[1] = //武器二
-}
 
 //main 會根據選取的人物去呼叫對應的constructor 
 
 
 
-void Dot::handleEvent( SDL_Event& e )
+void Engineer::handleEvent( SDL_Event& e )
 {
     //If a key was pressed
 	if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
@@ -62,10 +38,10 @@ void Dot::handleEvent( SDL_Event& e )
         //Adjust the velocity
         switch( e.key.keysym.sym )
         {
-            case SDLK_s: mVelY -= DOT_VEL; break;
-            case SDLK_w: mVelY += DOT_VEL; break;
-            case SDLK_a: mVelX -= DOT_VEL; break;
-            case SDLK_d: mVelX += DOT_VEL; break;//                             motion主程式中鍵盤操作的上下左右記得也要換wads 
+            case SDLK_s: mVelY -= ENGINEER_VEL; break;
+            case SDLK_w: mVelY += ENGINEER_VEL; break;
+            case SDLK_a: mVelX -= ENGINEER_VEL; break;
+            case SDLK_d: mVelX += ENGINEER_VEL; break;//                             motion主程式中鍵盤操作的上下左右記得也要換wads 
         }
     }
     //If a key was released
@@ -74,22 +50,20 @@ void Dot::handleEvent( SDL_Event& e )
         //Adjust the velocity
         switch( e.key.keysym.sym )
         {
-            case SDLK_w: mVelY += DOT_VEL; break;
-            case SDLK_s: mVelY -= DOT_VEL; break;
-            case SDLK_a: mVelX += DOT_VEL; break;
-            case SDLK_d: mVelX -= DOT_VEL; break;
+            case SDLK_w: mVelY += ENGINEER_VEL; break;
+            case SDLK_s: mVelY -= ENGINEER_VEL; break;
+            case SDLK_a: mVelX += ENGINEER_VEL; break;
+            case SDLK_d: mVelX -= ENGINEER_VEL; break;
         }
     }
 }
-
-
-void Dot::move()
+void Engineer::move()
 {
     //Move the dot left or right
     mPosX += mVelX;
 
     //If the dot went too far to the left or right
-    if( ( mPosX < 0 ) || ( mPosX + DOT_WIDTH > SCREEN_WIDTH ) )
+    if( ( mPosX < 0 ) || ( mPosX + ENGINEER_WIDTH > SCREEN_WIDTH ) )
     {
         //Move back
         mPosX -= mVelX;
@@ -99,30 +73,52 @@ void Dot::move()
     mPosY += mVelY;
 
     //If the dot went too far up or down
-    if( ( mPosY < 0 ) || ( mPosY + DOT_HEIGHT > SCREEN_HEIGHT ) )
+    if( ( mPosY < 0 ) || ( mPosY + ENGINEER_HEIGHT > SCREEN_HEIGHT ) )
     {
         //Move back
         mPosY -= mVelY;
     }
 }
 
-void Dot::render()
+void Engineer::render()
 {
     //Show the dot
-	gDotTexture.render( mPosX, mPosY );
+	gDotTexture.render( mPosX, mPosY );    //--------------------------尚未改名成 gEngineerTexture.render( mPosX, mPosY );
 }
- //--------------------------------------------------------------------------以上為SDL          
+ //----------------------------------------------------------------------------------------------------------------------以上為SDL        
+ 
+   
+void Engineer::GetHP(){return HP;}
+void Engineer::GetEnergy(){return Energy;}
+void Engineer::GetmPosX(){return mPosX;}		
+void Engineer::GetmPosY(){return mPosY;}
 
-void Dot::GetmPosX(){
-	return mPosX;
-}		
-void Dot::GetmPosY(){
-	return mPosY;
-}   
+void Engineer::IncreaseHP(int HP_Package){
+	if((HP +=  HP_Package) <= MaxHP){
+		return HP +=  HP_Package;		
+	}
+	else if((HP +=  HP_Package) > MaxHP){
+		return MaxHP;
+	}
+}
+
+void Engineer::IncreaseEnergy(int EnergyPackage){
+	if((Energy += EnergyPackage) <= MaxEnergy){
+		return Energy += EnergyPackage;		
+	}
+	else if((Energy += EnergyPackage) > MaxEnergy){
+		return MaxEnergy;
+	}
+}
+
+void Engineer::TakeDamage(int damage){return HP -= damage;}
+
+
+  
 		   
 		   
 		                                                                                                                                                                                                                                                                               
-//EE_sophomore::
+
 
 
 

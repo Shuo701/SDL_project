@@ -12,7 +12,7 @@ class Bullet
 		//Maximum axis velocity of the dot
 		static const int DOT_VEL = 10;
 		//Initializes the variables
-		Dot();
+		Bullet();
 		//Takes key presses and adjusts the dot's velocity
 		void handleEvent( SDL_Event& e );
 		//Moves the dot
