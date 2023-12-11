@@ -1,24 +1,17 @@
 //
-//  Game.cpp
+//  GameOver.cpp
 //  GamingProject
 //
-//  Created by 李康碩 on 2023/11/29.
+//  Created by 李康碩 on 2023/12/9.
 //
 
-#include "Game.hpp"
+#include "GameOver.hpp"
 
-Game::Game(string Name, SDL_Renderer* renderer) : Screen(Name, renderer){
-    selfTex = TextManager::loadTexture("IMG/map.gif", selfRender);
-    desR.h=800;
-    desR.w=600;
-    desR.x=0;
-    desR.y=0;
-}
+GameOver::GameOver(string Name, SDL_Renderer* renderer) : Screen(Name, renderer){}
+GameOver::~GameOver(){}
 
-Game::~Game()
-{}
 
-void Game::handleEvent()
+void GameOver::handleEvent()
 {
     SDL_PollEvent(&selfEvent);
     switch (selfEvent.type) {
@@ -32,7 +25,12 @@ void Game::handleEvent()
                 //Select surfaces based on key press
                 switch( selfEvent.key.keysym.sym )
                 {
-                    
+                    case SDLK_w:
+                        selfTex = TextManager::loadTexture("win.webp", selfRender);
+                        break;
+                    case SDLK_l:
+                        selfTex = TextManager::loadTexture("lose.jpeg", selfRender);
+                        break;
                     case SDLK_SPACE:
                         isRunning = false;
                         break;
@@ -40,25 +38,23 @@ void Game::handleEvent()
                         selfTex = TextManager::loadTexture("images_?.png", selfRender);
                         break;
                 }
-            
-            
         default:
             break;
     }
-    
 }
-void Game::update(){
+
+void GameOver::update(){}
     
-}
-    
-void Game::render(){
+void GameOver::render(){
     SDL_RenderClear(selfRender);
-    
     SDL_RenderCopy(selfRender, selfTex, NULL, &desR);
-    
-    
     SDL_RenderPresent(selfRender);
 }
-void Game::clean(){
+
+void GameOver::clean(){
+    /*SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
+     
+    SDL_Quit();*/
     cout<<name<<" Clean!"<<endl;
 }

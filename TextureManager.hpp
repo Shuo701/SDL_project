@@ -8,7 +8,7 @@
 #ifndef TextureManager_hpp
 #define TextureManager_hpp
 
-#include "Game.hpp"
+#include "allHeader.h"
 
 class TextManager{
     public:
