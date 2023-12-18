@@ -15,12 +15,12 @@ Weapon::Weapon(){                          //初始化的座標要跟人物在同個位置 ----
 
 void MeleeWeapon::render(){
     //Show the dot
-	gDotTexture.render( GetmPosX(), GetmPosY() );   //原版gDotTexture.render( mPosX, mPosY ); 尚未改名成 gMeleeWeapon.render( mPosX, mPosY );
+	gMeleeWeaponTexture.render( GetmPosX(), GetmPosY() );   //原版gDotTexture.render( mPosX, mPosY ); 尚未改名成 gMeleeWeapon.render( mPosX, mPosY );
 }
 
 
 void RangedWeapon::render(){
-	gDotTexture.render( GetmPosX(), GetmPosY() );//尚未改名成 gRangedWeapon.render( mPosX, mPosY );
+	gRangedWeaponTexture.render( GetmPosX(), GetmPosY() );//尚未改名成 gRangedWeapon.render( mPosX, mPosY );
 }
 
 //--------------------------------------------------------------------------SDL

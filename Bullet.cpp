@@ -33,5 +33,5 @@ void Bullet::move()
 void Bullet::render()
 {
     //Show the dot
-	gDotTexture.render( mPosX, mPosY );
+	gBulletTexture.render( mPosX, mPosY );
 }

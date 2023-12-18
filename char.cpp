@@ -83,7 +83,7 @@ void Engineer::move()
 void Engineer::render()
 {
     //Show the dot
-	gDotTexture.render( mPosX, mPosY );    //--------------------------尚未改名成 gEngineerTexture.render( mPosX, mPosY );
+	gEngineerTexture.render( mPosX, mPosY );    //--------------------------尚未改名成 gEngineerTexture.render( mPosX, mPosY );
 }
  //----------------------------------------------------------------------------------------------------------------------以上為SDL        
  
