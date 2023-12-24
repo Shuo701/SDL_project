@@ -52,11 +52,16 @@ public:
 
 };
     // monsters created
-class Slime: private monster{
+class Slime: public monster{
 private:
     const std::string directory = picture_directory + "/Slime";
+    const int move_probability = 75;
+    Uint32 timer;
+
 public:
     Slime(int hp = 50, int damage_melee = 1, int damage_ranged = 0, int loc_x = 25, int loc_y = 25);
+    void move();
+    bool if_shoot();
 };
 
 #endif //SDL_MONSTER_H
