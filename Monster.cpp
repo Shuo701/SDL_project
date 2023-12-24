@@ -9,6 +9,8 @@
 
 using namespace std;
 
+enum direction{UP, DOWN, LEFT, RIGHT};
+
 // class position
 position::position(int x, int y):x(x), y(y){} //x_min(range[0]), x_max(range[1]), y_min(range[2]), y_max(range[3]) {}
 void position::chang_pos(int v_x, int v_y) {
@@ -62,4 +64,34 @@ photos::~photos() {
 SDL_Surface* photos::get_photo(int i) {return picture[i];}
 
 //monsters
-Slime::Slime(int hp, int damage_melee, int damage_ranged, int loc_x, int loc_y): monster(hp, damage_melee, damage_ranged, loc_x, loc_y, directory){}
+Slime::Slime(int hp, int damage_melee, int damage_ranged, int loc_x, int loc_y): monster(hp, damage_melee, damage_ranged, loc_x, loc_y, directory){
+    timer = SDL_GetTicks();
+}
+void Slime::move() {
+    int if_move = (rand() % 100);
+    if (if_move <= move_probability) {
+        int direc = (rand() % 4);
+        switch (direc) {
+            case UP:
+                monster::move(0, moving_speed);
+                break;
+            case DOWN:
+                monster::move(0, -moving_speed);
+                break;
+            case LEFT:
+                monster::move(-moving_speed, 0);
+                break;
+            case RIGHT:
+                monster::move(moving_speed, 0);
+                break;
+        }
+    }
+}
+bool Slime::if_shoot() {
+    Uint32 interval = SDL_GetTicks() - timer;
+    if (interval > firing_rate){
+        int x = rand() % 4;
+        if (x == 0){timer = SDL_GetTicks(); return true;}
+        else{return false;}
+    }
+}
